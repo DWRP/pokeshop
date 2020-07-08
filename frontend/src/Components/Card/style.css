@@ -1,0 +1,40 @@
+.card{
+    width: 250px;
+    height: 250px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 10px;
+    margin: 10px auto;
+
+    background-color: white;
+    border-radius: 8px;
+
+}
+
+.bt{
+    width: 99%;
+    margin-top: 6px;
+    padding: 8px;
+
+    font-weight: bold;
+    font-size: 2.5vh;
+
+    border: none;
+    border-radius: 6px;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+.show{
+    background-color: teal;
+}
+.buy{
+    background-color: blue;
+}
