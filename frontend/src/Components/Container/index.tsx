@@ -11,7 +11,10 @@ export default function Container() {
     let [atual,setAtual] = useState(1)
 
     async function loadPockemon(offset:string){
-        const response = await api.get(`/pokemon?offset=${(Number(offset)*18)}&limit=18`)
+        if(Number(offset)>0){
+            offset = ""+((Number(offset) - 1)*18)
+        }
+        const response = await api.get(`/pokemon?offset=${offset}&limit=18`)
         const {results} = response.data
 
         const result = await results.map((item:{name:string,url:string},index:number)=>{
@@ -58,12 +61,20 @@ export default function Container() {
                             return atual>1?loadPockemon(""+(atual-1)):null
                         }}>Preview</button>
                     <button 
-                        onClick={()=>setAtual(atual-2)}
+                        onClick={()=>{
+
+                                setAtual(atual-2)
+                                loadPockemon(""+(atual-2))
+                            }
+                        }
                         className={atual-2<=0?'anim ocult':"anim"}
                     >{atual-2>0?atual-2:""}</button>
                     
                     <button 
-                        onClick={()=>setAtual(atual-1)}
+                        onClick={()=>{
+                            setAtual(atual-1)
+                            loadPockemon(""+(atual-1))
+                        }}
                         className={(atual-1)<=0?'anim ocult':"anim"}
                     >
                         {atual-1>0?atual-1:""}
@@ -74,13 +85,23 @@ export default function Container() {
                     </button>
                     <button 
                         className={atual<(964/18-1)?'anim':'ocult'} 
-                        onClick={()=>setAtual(atual+1)}
+                        onClick={()=>{
+                            setAtual(atual+1)
+                            loadPockemon(""+(atual+1))
+                        }}
                     >
                         {atual+1}
                     </button>
                     <button 
                         className={atual<(964/18-2)?'anim':'ocult'} 
-                        onClick={()=>setAtual(atual+2)}>{atual+2}</button>
+                        onClick={()=>{
+                            setAtual(atual+2)
+                            loadPockemon(""+(atual+2))
+                        }}
+                    >
+                        {atual+2}
+                    </button>
+
                     <button onClick={()=>{
                             if(atual<(964/18-1)){
                                 setAtual(atual+1)
