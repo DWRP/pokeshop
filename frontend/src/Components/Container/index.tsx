@@ -16,16 +16,24 @@ export default function Container() {
         }
         const response = await api.get(`/pokemon?offset=${offset}&limit=18`)
         const {results} = response.data
+        function getRandomInt(min:number, max:number) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
 
         const result = await results.map((item:{name:string,url:string},index:number)=>{
             const id = item.url.substring(34,36)
+            const price = getRandomInt(80,120)
             return {
                 ...item,
-                img:`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id.replace('/','')}.png`
+                img:`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id.replace('/','')}.png`,
+                price
             }
         })
         setPockemon(result)
     }
+
 
     useEffect(()=>{
         loadPockemon('0')
@@ -48,8 +56,8 @@ export default function Container() {
             </aside>
             <main className='main'>
                 {
-                    pockemon.map((item:{name:string,url:string,img:string},index)=>{
-                        return (<Card title={item.name} img_src={item.img} price={100} key={index} />)
+                    pockemon.map((item:{name:string,url:string,img:string,price:number},index)=>{
+                        return (<Card title={item.name} img_src={item.img} price={item.price} key={index} />)
                     })
                 }
                 {/* <Pagination offset={2} /> */}

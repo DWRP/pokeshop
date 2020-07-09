@@ -10,7 +10,7 @@ import logo from '../../assets/logo.svg'
 export default function Home() {
     return (
         <>
-            <Header img_src={logo} />
+            <Header img_src={logo} item={String(localStorage.getItem('item'))}/>
             <Container />
             <Footer />
         </>
