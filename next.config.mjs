@@ -2,7 +2,7 @@ const isGithubActions = process.env.GITHUB_ACTIONS || false;
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  assetPrefix: "/",
+  assetPrefix: "/pokeshop",
   basePath: "/pokeshop",
   reactStrictMode: true,
   images: {
