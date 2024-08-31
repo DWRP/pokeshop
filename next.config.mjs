@@ -2,10 +2,12 @@ const isGithubActions = process.env.GITHUB_ACTIONS || false;
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  assetPrefix: "/pokeshop/",
+  assetPrefix: "/",
+  basePath: "https://dwrp.github.io/pokeshop/",
   reactStrictMode: true,
   images: {
     dangerouslyAllowSVG: true,
+    unoptimized: true,
     remotePatterns: [
       {
         hostname: "raw.githubusercontent.com",
