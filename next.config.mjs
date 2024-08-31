@@ -1,0 +1,18 @@
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  assetPrefix: "/",
+  reactStrictMode: true,
+  images: {
+    dangerouslyAllowSVG: true,
+    remotePatterns: [
+      {
+        hostname: "raw.githubusercontent.com",
+      },
+    ],
+  },
+  trailingSlash: true,
+  ...(isGithubActions && { output: "export" }),
+  // output: "export"
+};
+
+export default nextConfig;
